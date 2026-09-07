@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilal | Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="portfolyoV2.css">
+</head>
+<body>
+
+    <div class="ambient-light"></div>
+
+    <div class="bento-container">
+        
+        <div class="bento-box box-hero">
+            <span class="greeting">Portfolyoma Hoş Geldin</span>
+            <h1>Ben <span class="gradient-text">Bilal.</span><br>Geleceği Kodluyorum.</h1>
+            <p class="about-text" style="max-width: 600px;">
+                C# dilinde algoritmalar kurmayı tutku haline getirmiş, HTML ve CSS ile bu mantığı dünyaya sunan bir <strong>Yazılımcı</strong> ve <strong>Full-Stack Adayıyım</strong>.
+            </p>
+        </div>
+
+        <div class="bento-box box-theme">
+            <h3 style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 5px;">Arayüz Teması</h3>
+            <button class="theme-btn" onclick="temaAyarla('koyu')">🌑 Dark Mode</button>
+            <button class="theme-btn" onclick="temaAyarla('acik')">☀️ Light Mode</button>
+            <button class="theme-btn" onclick="temaAyarla('mavi')">🌊 Cyber Blue</button>
+        </div>
+
+        <div class="bento-box box-terminal">
+            <div class="terminal-header">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div class="terminal-text">
+                > stack.current <br>
+                <span id="typewriter-text">HTML5</span><span class="cursor"></span>
+            </div>
+            <button class="terminal-btn" onclick="sonrakiDil()">> execute_next()</button>
+        </div>
+
+        <div class="bento-box box-about">
+            <h2 style="margin-bottom: 15px; font-size: 1.5rem;">Felsefem</h2>
+            <p class="about-text">
+                Sadece kod yazmıyorum, kısıtlı imkanların içinde <strong>sınırsız hayaller</strong> kurarak yeni bir dünya inşa ediyorum. Birçok profesyonelin zorlandığı yapıları analiz edip, en optimum ve görsel olarak en çarpıcı şekilde hayata geçiriyorum.
+            </p>
+        </div>
+
+        <div class="bento-box box-skills">
+            <div class="skills-wrapper">
+                <!-- JS ile dolacak -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="portfolyoV2.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+/* === TEMA DEĞİŞKENLERİ === */
+:root {
+    --bg-base: #09090b;
+    --surface: #18181b;
+    --surface-hover: #27272a;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #10b981;
+    --accent-glow: rgba(16, 185, 129, 0.2);
+    --gradient-1: #10b981;
+    --gradient-2: #3b82f6;
+}
+
+[data-theme="acik"] {
+    --bg-base: #f4f4f5;
+    --surface: #ffffff;
+    --surface-hover: #f1f5f9;
+    --text-primary: #09090b;
+    --text-secondary: #52525b;
+    --border: rgba(0, 0, 0, 0.1);
+    --accent: #059669;
+    --accent-glow: rgba(5, 150, 105, 0.15);
+}
+
+[data-theme="mavi"] {
+    --bg-base: #020617;
+    --surface: #0f172a;
+    --surface-hover: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border: rgba(56, 189, 248, 0.15);
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.2);
+    --gradient-1: #38bdf8;
+    --gradient-2: #818cf8;
+}
+
+/* === GENEL AYARLAR === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4vw;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    position: relative;
+}
+
+/* Arka Plandaki Dinamik Işık (Mesh Gradient Effect) */
+.ambient-light {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    filter: blur(80px);
+    animation: pulse 8s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+/* === BENTO GRID DÜZENİ === */
+.bento-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 20px;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+@keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Kutu Standartları */
+.bento-box {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-box:hover {
+    transform: scale(0.98);
+    border-color: var(--accent);
+    box-shadow: 0 10px 40px var(--accent-glow);
+    background-color: var(--surface-hover);
+}
+
+/* Grid Yerleşimleri */
+.box-hero { grid-column: span 3; grid-row: span 2; justify-content: center; }
+.box-theme { grid-column: span 1; grid-row: span 1; align-items: center; justify-content: center; gap: 10px;}
+.box-terminal { grid-column: span 1; grid-row: span 1; background: #000; border-color: #333; }
+.box-about { grid-column: span 2; grid-row: span 1; }
+.box-skills { grid-column: span 2; grid-row: span 1; }
+
+/* Mobil Uyum (Responsive) */
+@media (max-width: 900px) {
+    .bento-container { grid-template-columns: repeat(2, 1fr); }
+    .box-hero, .box-about, .box-skills { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+    .bento-container { grid-template-columns: 1fr; }
+    .box-hero, .box-theme, .box-terminal, .box-about, .box-skills { grid-column: span 1; }
+    .box-hero { grid-row: span 1; padding: 20px; }
+}
+
+/* === İÇERİK STİLLERİ === */
+.greeting {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.theme-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.theme-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-base);
+}
+
+.terminal-header {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot:nth-child(1) { background: #ff5f56; }
+.dot:nth-child(2) { background: #ffbd2e; }
+.dot:nth-child(3) { background: #27c93f; }
+
+.terminal-text {
+    font-family: 'Fira Code', monospace;
+    color: #01ff01;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-color: #01ff01;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.terminal-btn {
+    margin-top: 15px;
+    background: rgba(1, 255, 1, 0.1);
+    color: #01ff01;
+    border: 1px solid rgba(1, 255, 1, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+.terminal-btn:hover { background: #01ff01; color: #000; }
+
+.about-text {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+.about-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    height: 100%;
+}
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.skill-name {
+    width: 70px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.skill-bar-bg {
+    flex-grow: 1;
+    height: 6px;
+    background-color: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+    border-radius: 10px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skill-percent {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    width: 35px;
+    text-align: right;
+}
